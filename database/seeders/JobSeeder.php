@@ -28,7 +28,7 @@ class JobSeeder extends Seeder
 
         $tags = Tag::factory(15)->create();
         foreach ($jobs as $job) {
-            $randomTags = $tags->random(rand(0, 3))->pluck('id')->toArray();
+            $randomTags = $tags->random(rand(1, 3))->pluck('id')->toArray();
             $job->tags()->attach($randomTags);
         }
     }

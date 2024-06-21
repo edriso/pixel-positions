@@ -53,29 +53,30 @@ class TagFactory extends Factory
         */
 
         // Try to pick a unique tag name from the predefined list first
-        // static $usedNames = [];
-        // $tagName = null;
-        // if (count($usedNames) < count($tagNames)) {
-        //     do {
-        //         $tagName = $this->faker->randomElement($tagNames);
-        //     } while (in_array($tagName, $usedNames));
-
-        //     $usedNames[] = $tagName;
-        // } else {
-        //     // All predefined names are exhausted, generate a new unique word
-        //     $tagName = $this->faker->unique()->word();
-        // }
-
-        // Static variable to keep track of used indices
-        static $index = 0;
-        // Pick a tag name from the list or generate a unique word
+        static $usedNames = [];
         $tagName = null;
-        if ($index < count($tagNames)) {
-            $tagName = $tagNames[$index];
-            $index++;
+        if (count($usedNames) < count($tagNames)) {
+            do {
+                $tagName = $this->faker->randomElement($tagNames);
+            } while (in_array($tagName, $usedNames));
+
+            $usedNames[] = $tagName;
         } else {
+            // All predefined names are exhausted, generate a new unique word
             $tagName = $this->faker->unique()->word();
         }
+
+        // // below can be a more straightforward approach to ensure unique tag names are selected without the risk of running into memory issues or excessive retries
+        // // Static variable to keep track of used indices
+        // static $index = 0;
+        // // Pick a tag name from the list or generate a unique word
+        // $tagName = null;
+        // if ($index < count($tagNames)) {
+        //     $tagName = $tagNames[$index];
+        //     $index++;
+        // } else {
+        //     $tagName = $this->faker->unique()->word();
+        // }
 
         return [
             'name' => $tagName,
