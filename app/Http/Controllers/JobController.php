@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
-use App\Http\Requests\StoreJobRequest;
-use App\Http\Requests\UpdateJobRequest;
+use App\Models\Tag;
+use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
@@ -13,7 +13,16 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+        $jobs = Job::latest()
+            ->with(['employer', 'tags'])
+            ->get()
+            ->groupBy('is_featured');
+
+        return view('jobs.index', [
+            'featured_jobs' => $jobs[1],
+            'regular_jobs' => $jobs[0],
+            'tags' => Tag::all(),
+        ]);
     }
 
     /**
@@ -27,7 +36,7 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreJobRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -51,7 +60,7 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJobRequest $request, Job $job)
+    public function update(Request $request, Job $job)
     {
         //
     }
