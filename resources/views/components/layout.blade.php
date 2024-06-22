@@ -5,6 +5,7 @@
     <meta name='viewport'
           content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
     <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <link rel="icon" href="{{ Vite::asset('resources/images/favicon.png') }}" />
     <title>Pixel Positions</title>
     {{-- font --}}
     <link rel='preconnect' href='https://fonts.googleapis.com'>
@@ -22,7 +23,7 @@
             <div>
                 <a href='/'>
                     {{-- Vite is a global alias of \Illuminate\Support\Facades\Vite --}}
-                    <img src='{{ Vite::asset('resources/images/logo.svg') }}' alt=''>
+                    <img src='{{ Vite::asset('resources/images/logo.svg') }}' alt='Pixel Position'>
                 </a>
             </div>
 
@@ -58,6 +59,5 @@
             {{ $slot }}
         </main>
     </div>
-
 </body>
 </html>
