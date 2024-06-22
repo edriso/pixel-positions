@@ -17,7 +17,7 @@
             @endforeach
         </x-forms.select>
 
-        <x-forms.input label="URL" name="url" placeholder="https://acme.com/jobs/ceo-wanted" />
+        <x-forms.input type='url' label="URL" name="url" placeholder="https://acme.com/jobs/ceo-wanted" />
         <x-forms.checkbox label="Feature (Costs Extra)" name="is_featured" />
 
         <x-forms.divider />
