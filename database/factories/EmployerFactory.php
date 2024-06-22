@@ -19,7 +19,8 @@ class EmployerFactory extends Factory
         return [
             'user_id' => \App\Models\User::factory(),
             'name' => fake()->name(),
-            'logo' => fake()->imageUrl(),
+            // 'logo' => fake()->imageUrl(),
+            'logo' => 'http://picsum.photos/seed/' . rand(0, 1000) . '/200/200',
         ];
     }
 }

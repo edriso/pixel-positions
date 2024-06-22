@@ -9,6 +9,11 @@ use App\Http\Controllers\RegisteredUserController;
 
 Route::get('/', [JobController::class, 'index']);
 
+Route::prefix('jobs')->middleware('auth')->group(function () {
+    Route::get('/create', [JobController::class, 'create'])->name('jobs.create');
+    Route::post('/', [JobController::class, 'store'])->name('jobs.store');
+});
+
 Route::get('/search', SearchController::class);
 Route::get('/tags/{tag:name}', TagController::class);
 
