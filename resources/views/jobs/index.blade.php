@@ -31,7 +31,7 @@
         </section>
 
         <section>
-            <x-section-heading>Recent jobs</x-section-heading>
+            <x-section-heading>Regular jobs</x-section-heading>
 
             <div class="mt-6 space-y-6">
                 @foreach ($regular_jobs as $job)
