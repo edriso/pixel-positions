@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\Tag;
+use App\Mail\JobPosted;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Enums\EmploymentType;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
 {
@@ -62,6 +64,8 @@ class JobController extends Controller
                 $job->tag($tag);
             }
         }
+
+        Mail::to($job->employer->user)->queue(new JobPosted($job));
 
         return redirect('/');
     }
