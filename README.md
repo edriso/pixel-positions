@@ -1,3 +1,11 @@
+## Development and checks
+
+Requires PHP 8.2+ and Composer 2. Install the locked PHP dependencies with `composer install`. Copy `.env.example` to `.env` and configure your own development database and services. This update uses patched Laravel 12 and preserves the existing application structure.
+
+Run `npm ci && npm run build` with Node 22 to build frontend assets.
+
+Run `php vendor/bin/pest` for tests. Tests use an isolated in-memory SQLite database and fake mail transports. CI checks PHP 8.2 and 8.4, locked installs, tests, and dependency audits. Production database migrations and external service deployment must be handled in the deployment environment.
+
 # Pixel Positions
 
 Pixel Positions is a web application built with Laravel that allows users to post and find jobs. It includes features for job posting, job searching, user authentication, and email notifications for new job postings.

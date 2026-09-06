@@ -25,8 +25,8 @@ class JobController extends Controller
             ->groupBy('is_featured');
 
         return view('jobs.index', [
-            'featured_jobs' => $jobs[1],
-            'regular_jobs' => $jobs[0],
+            'featured_jobs' => $jobs->get(1, collect()),
+            'regular_jobs' => $jobs->get(0, collect()),
             'tags' => Tag::all(),
         ]);
     }
@@ -59,7 +59,7 @@ class JobController extends Controller
         $job = Auth::user()->employer->jobs()->create(Arr::except($attributes, 'tags'));
 
         // if (!empty($attributes['tags'])) {
-        if ($attributes['tags']) {
+        if (!empty($attributes['tags'])) {
             foreach (explode(',', $attributes['tags']) as $tag) {
                 $job->tag($tag);
             }
